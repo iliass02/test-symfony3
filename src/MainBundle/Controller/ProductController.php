@@ -19,16 +19,14 @@ class ProductController extends Controller {
                 array('id' => $id)
             );
 
-        return $this->render('MainBundle:Default:product.html.twig', ['product' => $product]);
+        $categories = $this->getDoctrine()
+            ->getRepository('MainBundle:Categorie')
+            ->findAll();
 
-    }
-
-    /**
-     * @Route ("/site/product/{id}/addPanier", name="app_product_addPanier")
-     */
-    public function addPanierAction($id) {
-
-
+        return $this->render('MainBundle:Default:product.html.twig', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
 
     }
 

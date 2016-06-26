@@ -15,9 +15,9 @@
                         <span>Store</span>
                     </a>
                     <ul class="sub">
-                        <li><a  href="#">Maroquinerie</a></li>
-                        <li><a  href="#">Cosmétique</a></li>
-                        <li><a  href="#">Maison</a></li>
+                        {% for category in categories %}
+                        <li><a  href="{{ path('app_products_category', {'id': category.id}) }}">{{ category.nomCategorie }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
 
@@ -82,7 +82,11 @@
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper site-min-height">
+                {% if categories is defined %}
+                <h3> Store <i class="fa fa-angle-right"></i> {{ category_name }}</h3>
+                {% else %}
                 <h3> Store <i class="fa fa-angle-right"></i> Nouveaux produits mis en ligne</h3>
+                {% endif %}
                 <hr>
                 <div class="row mt">
 
@@ -102,7 +106,7 @@
                                 <h5>Par : {{ product.Idclient.nom }} {{ product.Idclient.prenom }}</h5>
                                 <hr>
                                 <h4>Prix : <span style="color: #68dff0">{{ product.prix }} €</span></h4>
-                                <a style="color: #ffd777" href="javascript:;"><i class="fa fa-shopping-cart fa-2x pull-left"></i></a>
+                                <a style="color: #ffd777" href="{{ path('app_product_addPanier', {'id': product.id}) }}"><i class="fa fa-shopping-cart fa-2x pull-left"></i></a>
                             </div>
                         </div>
                     </div><!-- col-lg-4 -->
