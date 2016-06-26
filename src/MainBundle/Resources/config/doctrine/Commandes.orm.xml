@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="MainBundle\Entity\Commandes" table="commandes">
+    <indexes>
+      <index name="idClient" columns="idClient"/>
+      <index name="idProduit" columns="idProduit"/>
+      <index name="idAdresseLivraison" columns="idAdresseLivraison"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="payer" type="boolean" column="payer" nullable="true"/>
+    <field name="date" type="datetime" column="date" nullable="true"/>
+    <many-to-one field="idadresselivraison" target-entity="Adresselivraison" fetch="LAZY">
+      <join-columns>
+        <join-column name="idAdresseLivraison" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idproduit" target-entity="Produits" fetch="LAZY">
+      <join-columns>
+        <join-column name="idProduit" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idclient" target-entity="Clients" fetch="LAZY">
+      <join-columns>
+        <join-column name="idClient" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
