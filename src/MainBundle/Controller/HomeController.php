@@ -50,6 +50,15 @@ class HomeController extends Controller {
             ->getRepository('MainBundle:Categorie')
             ->findAll();
 
+        if (!$products) {
+            return $this->redirectToRoute('app_home');
+        }
+
+        if (!$category_name) {
+            return $this->redirectToRoute('app_home');
+        }
+
+
         return $this->render('MainBundle:Default:index.html.twig', [
             'products' => $products,
             'categories' => $categories,

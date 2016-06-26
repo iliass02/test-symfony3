@@ -23,6 +23,10 @@ class ProductController extends Controller {
             ->getRepository('MainBundle:Categorie')
             ->findAll();
 
+        if (!$product) {
+            return $this->redirectToRoute('app_home');
+        }
+        
         return $this->render('MainBundle:Default:product.html.twig', [
             'product' => $product,
             'categories' => $categories
