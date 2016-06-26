@@ -2,11 +2,11 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: symfony-code-camp-ecommerce
     database_user: root
-    database_password: null
+    database_password: root
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    secret: 9898e3f257d0ede2723a4b5083dcca22df8a0860
+    secret: e94b86f9d09706a9d543a75bbf7b4386099e07db

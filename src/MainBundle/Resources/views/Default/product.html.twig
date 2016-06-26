@@ -1,0 +1,138 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<body>
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+
+            <p class="centered"><a href=""><img src="http://www.trainingzone.co.uk/sites/all/themes/pp/img/default-user.png" class="img-circle" width="60"></a></p>
+
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Store</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="#">Maroquinerie</a></li>
+                    <li><a  href="#">Cosmétique</a></li>
+                    <li><a  href="#">Maison</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-desktop"></i>
+                    <span>Espace Client</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Mes commandes</a></li>
+                    <li><a href="#">Deconnexion</a></li>
+                </ul>
+            </li>
+
+
+
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+
+    <section id="container" >
+        <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
+            <!--logo start-->
+            <a href="index.php" class="logo"><b>La Galerie des Artisans</b></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+
+                        <a href="panier.php">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <!-- inbox dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+
+            <div class="top-menu">
+                <ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="logout.php">Deconnexion</a></li>
+                    <li><a class="logout" href="logout.php">Espace Admin</a></li>
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper site-min-height">
+                <a style="color: #797979" href="#">
+                    <h3>Store
+                        <i class="fa fa-angle-right"></i>
+                    </h3>
+                </a>
+
+                <h4>&nbsp&nbsp&nbsp<i class="fa fa-angle-down"></i>{{ product.nomproduit }}</h4>
+                <div class="row mt">
+                    <div class="row">
+                        <div style="margin-left:-100px">
+                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 mb">
+                                <center>
+                                    <p><img src="{{ product.image }}" style="width:50%"></p>
+                                </center>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5 mb">
+                                <center>
+                                    <p style="font-size:18px"> Vendu par <span style="color: #68dff0;">{{ product.IdClient.nom }}  {{ product.IdClient.prenom }}</span></p>
+                                    <hr />
+                                    <p style="font-size:18px"> Prix : <span style="color: #ffd777">{{ product.prix }} €</span></p>
+                                    <hr />
+                                    <p style="font-size:18px"> Disponible : {{ product.stock }}</p>
+                                    <hr />
+                                    <p style="font-size:18px;     word-wrap: break-word;"> Description : {{ product.description }}</p>
+                                    <br /><br />
+                                    <p><button type="button"  id="addpanier" onclick="" class="btn btn-success" style="height:50px; width:50%; font-size:18px">Ajouter au Panier !</button></a>
+                                    <h4>Impossible de commander en tant que Fournisseur ou Admin</h4>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+            </section><!--/wrapper -->
+        </section><!-- /MAIN CONTENT -->
+
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                La Galerie des Artisans
+                <a href="#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+
+
+    <div id="divValidationPanier">
+    </div>
+</body>
+
+{% endblock %}

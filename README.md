@@ -1,5 +1,4 @@
-symfony_code_camp_ecommerce
-===========================
+test
+====
 
-A Symfony project created on June 25, 2016, 1:25 pm.
-# test-symfony3
+A Symfony project created on June 25, 2016, 9:19 pm.

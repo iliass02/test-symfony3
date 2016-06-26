@@ -2,27 +2,34 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-
-        {% block javascripts %}
-            {% javascripts
-                '@MainBundle/Resources/public/js/jquery.min.js'
-                '@MainBundle/Resources/public/js/bootstrap.min.js'
-            %}
-            <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        {% endblock %}
+        <title>{% block title %}La Galerie des Artisans - Store{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block stylesheets %}
-            {% stylesheets '@MainBundle/Resources/public/css/*' filter='cssrewrite' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% stylesheets
+                '@MainBundle/Resources/public/css/*'
+                '@MainBundle/Resources/public/font-awesome/css/font-awesome.css'
+                '@MainBundle/Resources/public/js/fancybox/jquery.fancybox.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-
-        <title>{% block title %} Base {% endblock %}</title>
+        {% block javascripts %}
+            {% javascripts
+                '@MainBundle/Resources/public/js/jquery.js'
+                '@MainBundle/Resources/public/js/fancybox/jquery.fancybox.js'
+                '@MainBundle/Resources/public/js/bootstrap.min.js'
+                '@MainBundle/Resources/public/js/jquery.dcjqaccordion.2.7.js'
+                '@MainBundle/Resources/public/js/jquery.scrollTo.min.js'
+                '@MainBundle/Resources/public/js/jquery.nicescroll.js'
+                '@MainBundle/Resources/public/js/sweetalert.min.js'
+                '@MainBundle/Resources/public/js/common-scripts.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %} Base {% endblock %}
+        {% block body %}{% endblock %}
+
     </body>
 </html>

@@ -1,7 +1,169 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<div class="jumbotro">
-    <h1>Hello World !</h1>
-</div>
+<body>
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+
+                <p class="centered"><a href=""><img src="http://www.trainingzone.co.uk/sites/all/themes/pp/img/default-user.png" class="img-circle" width="60"></a></p>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" >
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Store</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="#">Maroquinerie</a></li>
+                        <li><a  href="#">Cosmétique</a></li>
+                        <li><a  href="#">Maison</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-desktop"></i>
+                        <span>Espace Client</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="#">Mes commandes</a></li>
+                        <li><a href="#">Deconnexion</a></li>
+                    </ul>
+                </li>
+
+
+
+
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+
+
+    <section id="container">
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
+            <!--logo start-->
+            <a href="#" class="logo"><b>La Galerie des Artisans</b></a>
+            <!--logo end-->
+
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+                        <a href="panier.php">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <!-- inbox dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+
+            <div class="top-menu">
+                <ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="#">Deconnexion</a></li>
+                    <li><a class="logout" href="#">Espace Admin</a></li>
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+
+
+
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper site-min-height">
+                <h3> Store <i class="fa fa-angle-right"></i> Nouveaux produits mis en ligne</h3>
+                <hr>
+                <div class="row mt">
+
+                    {% for product in products %}
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                        <div class="project-wrapper">
+                            <div class="project" style="    margin: 30px;">
+                                <div class="photo-wrapper">
+                                    <div class="photo">
+                                        <a href="{{ path('app_product_details', {'id': product.id }) }}">
+                                            <input type="image" class="img-responsive" src="{{ product.image }}" alt="submit">
+                                        </a>
+                                    </div>
+                                    <div class="overlay"></div>
+                                </div>
+                                <h4>{{ product.nomProduit }}</h4>
+                                <h5>Par : {{ product.Idclient.nom }} {{ product.Idclient.prenom }}</h5>
+                                <hr>
+                                <h4>Prix : <span style="color: #68dff0">{{ product.prix }} €</span></h4>
+                                <a style="color: #ffd777" href="javascript:;"><i class="fa fa-shopping-cart fa-2x pull-left"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- col-lg-4 -->
+                    {% endfor %}
+
+                </div><!-- /row -->
+            </section><!--/wrapper -->
+        </section><!-- /MAIN CONTENT -->
+
+       <footer class="site-footer">
+            <div class="text-center">
+                La Galerie des Artisans
+                <a href="#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+
+    <div id="divValidationPanier">
+    </div>
+
+    <!--script for this page-->
+
+    <script type="text/javascript">
+
+
+            // <?php if (isset($_GET['error']) && $_GET['error'] == '3') { ?>
+            //     swal("Paiement", "Erreur lors du Paiement, veuillez réessayer plus tard", "error");
+            // <?php } elseif (isset($_GET['success']) && $_GET['success'] == "3" ) { ?>
+            //     swal("Paiement", "Le Paiment a été effectué avec succès", "success");
+            // <?php } ?>
+            //
+    		// <?php if ($facture == 1) :?>
+    		// swal("Commande confirmée", "Vous avez recu un mail de confirmation", "success");
+            // <?php endif;?>
+
+        function addPanier (idProduit, idClient) {
+            $.get("ajax.php", {typeAjax: "insertProduitPanier", produitId: idProduit, idClient: idClient}, function (data) {
+                $("#divValidationPanier").html(data);
+                setTimeout(function(){
+                    location.reload();
+                }, 1500);
+            });
+        }
+
+        $(function() {
+            //    fancybox
+            jQuery(".fancybox").fancybox();
+        });
+
+    </script>
+
+    <script>
+        //custom select box
+
+        $(function(){
+            $("select.styled").customSelect();
+        });
+
+    </script>
+</body>
 {% endblock %}
